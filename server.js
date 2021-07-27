@@ -11,6 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 const db = require("./src/models");
 
 const Role = db.role;
+const Type = db.type
 
 db.mongoose.connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
     useNewUrlParser: true,
@@ -53,6 +54,35 @@ function initial(){
             });
         }
     })
+    Type.estimatedDocumentCount((err, count) => {
+        if(!err && count === 0){
+            new Type({
+                name: "Front-end"
+            }).save(err => {
+                if(err){
+                    console.log("error", err)
+                }
+                console.log("Front-end ajouter dans le type")
+            });
+            new Type({
+                name: "Back-end"
+            }).save(err => {
+                if(err){
+                    console.log("Error", err)
+                }
+                console.log("Back-end ajouter dans le type")
+            });
+
+            new Type({
+                name: "Designer"
+            }).save(err => {
+                if(err){
+                    console.log("error", err)
+                }
+                console.log("Designer ajouter dans le type")
+            });
+        }
+    })
 }
 
 
@@ -69,6 +99,9 @@ app.use(cors(option));
 
 const authRoute = require("./src/routes/auth.route")
 const userRoute = require("./src/routes/user.route")
+const abouteRoute = require("./src/routes/about.route")
+const skillRoute = require("./src/routes/skill.route")
+const typeRoute = require("./src/routes/type.route")
 
 app.use(function(req, res, next) {
     res.header(
@@ -84,6 +117,9 @@ const PORT = process.env.PORT || 5000
 
 app.use("/api/auth/", authRoute)
 app.use("/api/users/", userRoute)
+app.use("/api/about", abouteRoute)
+app.use("/api/skill", skillRoute)
+app.use("/api/type", typeRoute)
 
 
 app.get("/", (req, res)=>{

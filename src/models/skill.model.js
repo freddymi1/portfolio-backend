@@ -5,7 +5,12 @@ const Skill = mongoose.model(
     new mongoose.Schema({
         title: String,
         level: Number,
-        type: String,
+        types: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Type"
+            }
+        ],
         createdAt:{
             type:Date,
             default: Date.now()

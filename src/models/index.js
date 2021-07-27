@@ -13,6 +13,9 @@ db.formation = require("./formation.model");
 db.langue = require("./langue.model");
 db.skill = require("./skill.model");
 db.contact = require("./contact.model");
+db.type = require("./type.model");
+
+db.TYPES = ["Front-end", "Back-end", "Designer"]
 
 db.ROLES = ["user", "admin", "moderator"];
 
