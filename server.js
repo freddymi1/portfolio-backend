@@ -2,6 +2,7 @@ const express = require("express")
 const bodyParser = require("body-parser")
 const cors = require("cors")
 const app = express()
+
 const dbConfig = require("./config/db.config")
 
 app.use(express.json());
@@ -10,9 +11,6 @@ app.use(express.urlencoded({ extended: true }));
 const db = require("./src/models");
 
 const Role = db.role;
-/**
- * Connexion a la base de donnee
- */
 
 db.mongoose.connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
     useNewUrlParser: true,

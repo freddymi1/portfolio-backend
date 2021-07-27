@@ -4,6 +4,8 @@ const Skill = mongoose.model(
     "Skill",
     new mongoose.Schema({
         title: String,
+        level: Number,
+        type: String,
         createdAt:{
             type:Date,
             default: Date.now()
