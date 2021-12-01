@@ -11,7 +11,7 @@ const { authJwt } = require("../middleware");
 const userController = require("../controllers/user.controller");
 const router = require("express").Router()
 
-router.get("/all", userController.allAccess);
+router.get("/all", [authJwt.verifyToken], userController.allAccess);
 
 router.get("/user", [authJwt.verifyToken], userController.userBoard);
 

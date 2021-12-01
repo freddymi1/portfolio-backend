@@ -58,7 +58,7 @@ exports.DeleteAbout = async (req, res) => {
             await AboutModel.findByIdAndDelete(req.params.id)
             res.status(200).json("Apropos bien supprimer")
         }catch(err){
-            es.status(400).json("Erreu de suppression")
+            res.status(400).json("Erreu de suppression")
         }
     }catch(err){
         res.status(500).json("Pas de donne valable")

@@ -81,6 +81,15 @@ function initial(){
                 }
                 console.log("Designer ajouter dans le type")
             });
+
+            new Type({
+                name: "Mobile"
+            }).save(err => {
+                if(err){
+                    console.log("error", err)
+                }
+                console.log("Mobile ajouter dans le type")
+            });
         }
     })
 }

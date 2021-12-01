@@ -69,3 +69,29 @@ exports.getAllSkills = async (req, res) => {
         res.send({status: 500, message: "Data vide"})
     }
 }
+
+exports.getOneSkill = async (req, res) => {
+    try{
+        const skill = await SkillModel.findById(req.params.id);
+        res.status(200).json(skill)
+    }catch(err){
+        res.send({
+            status: 500,
+            message: "Skill introuvable"
+        })
+    }
+}
+
+exports.deleteSkill = async (req, res) => {
+    try{
+        const ab = await SkillModel.findById(req.params.id);
+        try{
+            await SkillModel.findByIdAndDelete(req.params.id)
+            res.status(200).json("Skill bien supprimer")
+        }catch(err){
+            res.status(400).json("Erreu de suppression")
+        }
+    }catch(err){
+        res.status(500).json("Pas de donne valable")
+    }
+}
