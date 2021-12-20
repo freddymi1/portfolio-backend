@@ -39,7 +39,7 @@ exports.AddSkill = (req, res) => {
             );
         } 
         else {
-            TypeModel.findOne({ name: "Front-end" }, (err, type) => {
+            TypeModel.findOne({ name: "Autres" }, (err, type) => {
                 if (err) {
                     res.status(500).send({ message: err });
                     return;
@@ -79,6 +79,18 @@ exports.getOneSkill = async (req, res) => {
             status: 500,
             message: "Skill introuvable"
         })
+    }
+}
+
+exports.UpdateSkill = async (req, res) => {
+    try{
+        const skillUpdate = await SkillModel.findByIdAndUpdate(req.params.id, {
+            $set: req.body,
+        }, {new: true})
+        console.log(skillUpdate)
+        res.status(200).json("OK")
+    }catch(err){
+        res.status(500).json("Erreur de modification de competence")
     }
 }
 

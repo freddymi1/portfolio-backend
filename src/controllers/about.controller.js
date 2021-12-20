@@ -7,7 +7,8 @@ exports.AddAbout = async (req, res) =>{
         const about = await AboutModel({
             name: req.body.name,
             lastname: req.body.lastname,
-            dateBirth:req.body.dateBirth,
+            dateBirth: req.body.dateBirth,
+            description: req.body.description,
             home: req.body.home,
             city: req.body.city,
             country: req.body.country,
@@ -27,7 +28,7 @@ exports.getAllAbout = async (req, res) => {
             res.status(200).json(data)
         })
     }catch(err){
-       res.status(500).json("Pas de donne valable")
+       res.status(500).json("Erreur de modification")
     }
 }
 
@@ -36,18 +37,18 @@ exports.getOneAbout = async (req, res) =>{
         const about = await AboutModel.findById(req.params.id)
         res.status(200).json(about)
     }catch(err){
-        res.status(500).json("Pas de donne valable")
+        res.status(500).json("Erreur de modification")
     }
 }
 
 exports.UpdateAbout = async (req, res) => {
     try{
-        const updateAbout = await AboutModel.findByIdAndUpdate(req.params.id, {
+        await AboutModel.findByIdAndUpdate(req.params.id, {
             $set: req.body,
         }, {new: true})
-        res.status(200).json(updateAbout)
+        res.status(200).json("A propos de moi modifier avec succes")
     }catch(err){
-        res.status(500).json("Pas de donne valable")
+        res.status(500).json("Erreur de modification")
     }
 }
 
@@ -61,6 +62,6 @@ exports.DeleteAbout = async (req, res) => {
             res.status(400).json("Erreu de suppression")
         }
     }catch(err){
-        res.status(500).json("Pas de donne valable")
+        res.status(500).json("Erreur de modification")
     }
 }

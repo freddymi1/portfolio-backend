@@ -9,6 +9,7 @@ const About = mongoose.model(
         home: String,
         city: String,
         country: String,
+        description: String,
         photo: String,
         createdAt:{
             type:Date,

@@ -38,3 +38,23 @@ exports.getOneUser = async (req, res) => {
         res.send({status: 500, message: "Cette user n'existe pas"})
     }
 }
+
+exports.UpdateUser = async (req, res) => {
+    // try{
+    //     const updateUser = await UserModel.findByIdAndUpdate(req.params.id, {
+    //         $set: req.body,
+    //     }, {new: true})
+    //     res.status(200).json(updateUser)
+    // }catch(err){
+    //     res.status(500).json("Pas de donne valable")
+    // }
+
+    try{
+        const updateUser = await UserModel.findByIdAndUpdate(req.params.id, {
+            $set: req.body,
+        }, {new: true})
+        res.status(200).json("User bien modifier")
+    }catch(err){
+        res.status(400).json("Erreu de modification")
+    }
+}

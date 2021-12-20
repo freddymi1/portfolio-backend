@@ -28,5 +28,6 @@ router.get(
 );
 router.get("/", userController.getAllUsers)
 router.get("/:id", userController.getOneUser)
+router.put("/:id", [authJwt.verifyToken, authJwt.isAdmin], userController.UpdateUser)
 
 module.exports = router;

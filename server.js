@@ -62,7 +62,7 @@ function initial(){
                 if(err){
                     console.log("error", err)
                 }
-                console.log("Front-end ajouter dans le type")
+                console.log("Front-end type ajouter dans le type")
             });
             new Type({
                 name: "Back-end"
@@ -70,7 +70,7 @@ function initial(){
                 if(err){
                     console.log("Error", err)
                 }
-                console.log("Back-end ajouter dans le type")
+                console.log("Back-end type ajouter dans le type")
             });
 
             new Type({
@@ -79,7 +79,7 @@ function initial(){
                 if(err){
                     console.log("error", err)
                 }
-                console.log("Designer ajouter dans le type")
+                console.log("Designer type ajouter dans le type")
             });
 
             new Type({
@@ -88,7 +88,16 @@ function initial(){
                 if(err){
                     console.log("error", err)
                 }
-                console.log("Mobile ajouter dans le type")
+                console.log("Mobile type ajouter dans le type")
+            });
+
+            new Type({
+                name: "Autres"
+            }).save(err => {
+                if(err){
+                    console.log("error", err)
+                }
+                console.log("Autre type ajouter dans le type")
             });
         }
     })
@@ -111,6 +120,7 @@ const userRoute = require("./src/routes/user.route")
 const abouteRoute = require("./src/routes/about.route")
 const skillRoute = require("./src/routes/skill.route")
 const typeRoute = require("./src/routes/type.route")
+const langueRoute = require("./src/routes/langue.route")
 
 app.use(function(req, res, next) {
     res.header(
@@ -129,6 +139,7 @@ app.use("/api/users/", userRoute)
 app.use("/api/about", abouteRoute)
 app.use("/api/skill", skillRoute)
 app.use("/api/type", typeRoute)
+app.use("/api/langue", langueRoute)
 
 
 app.get("/", (req, res)=>{
