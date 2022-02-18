@@ -50,11 +50,26 @@ exports.UpdateUser = async (req, res) => {
     // }
 
     try{
-        const updateUser = await UserModel.findByIdAndUpdate(req.params.id, {
+        const updateUser = await UserModel.findByIdAndUpdate(req.params.id ,{
             $set: req.body,
+            password: bcrypt.hashSync(req.body.password, 8)
         }, {new: true})
         res.status(200).json("User bien modifier")
     }catch(err){
         res.status(400).json("Erreu de modification")
+    }
+}
+
+exports.deleteUser = async (req, res) => {
+    try{
+        const ab = await UserModel.findById(req.params.id);
+        try{
+            await UserModel.findByIdAndDelete(req.params.id)
+            res.status(200).json("User bien supprimer")
+        }catch(err){
+            res.status(400).json("Erreu de suppression")
+        }
+    }catch(err){
+        res.status(500).json("Pas de donne valable")
     }
 }

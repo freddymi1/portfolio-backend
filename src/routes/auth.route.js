@@ -14,7 +14,7 @@ router.post(
   "/signup",
   [
     verifySignUp.checkNameOrEmail,
-    verifySignUp.checkRoleExiste
+    // verifySignUp.checkRoleExiste
   ],
   authController.signup
 );

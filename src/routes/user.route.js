@@ -26,8 +26,17 @@ router.get(
   [authJwt.verifyToken, authJwt.isAdmin],
   userController.adminBoard
 );
-router.get("/", userController.getAllUsers)
-router.get("/:id", userController.getOneUser)
-router.put("/:id", [authJwt.verifyToken, authJwt.isAdmin], userController.UpdateUser)
+router.get("/",
+// [authJwt.verifyToken, authJwt.isAdmin], 
+userController.getAllUsers)
+router.get("/:id",
+// [authJwt.verifyToken, authJwt.isAdmin],
+userController.getOneUser)
+router.put("/:id", 
+// [authJwt.verifyToken, authJwt.isAdmin], 
+userController.UpdateUser)
+router.delete("/:id", 
+// [authJwt.verifyToken, authJwt.isAdmin], 
+userController.deleteUser)
 
 module.exports = router;

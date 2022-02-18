@@ -6,7 +6,7 @@ const About = mongoose.model(
         name: String,
         lastname: String,
         dateBirth:Date,
-        home: String,
+        adress: String,
         city: String,
         country: String,
         description: String,

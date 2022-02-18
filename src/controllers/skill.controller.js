@@ -1,3 +1,4 @@
+const { skill } = require("../models");
 const db = require("../models")
 
 const TypeModel = db.type;
@@ -26,7 +27,7 @@ exports.AddSkill = (req, res) => {
                     return;
                     }
         
-                    skill.types = types.map(t => t._id);
+                    skill.types = types.map(t => t.title);
                     skill.save(err => {
                     if (err) {
                         res.status(500).send({ message: err });
@@ -45,7 +46,7 @@ exports.AddSkill = (req, res) => {
                     return;
                 }
         
-                skill.types = [type._id];
+                skill.types = [type.title];
                 skill.save(err => {
                     if (err) {
                     res.status(500).send({ message: err });
@@ -88,7 +89,7 @@ exports.UpdateSkill = async (req, res) => {
             $set: req.body,
         }, {new: true})
         console.log(skillUpdate)
-        res.status(200).json("OK")
+        res.status(200).json("Modification effectuee avec succes!")
     }catch(err){
         res.status(500).json("Erreur de modification de competence")
     }

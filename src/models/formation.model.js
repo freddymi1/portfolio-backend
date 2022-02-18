@@ -4,10 +4,21 @@ const Formation = mongoose.model(
     "Formation",
     new mongoose.Schema({
         title: String,
-        college: String,
+        school: String,
         filiere: String,
-        startDate:Date,
-        endDate: Date,
+        description: {
+            type: Array
+        },
+        startDate:{
+            type: Date,
+            default: null,
+            required: false
+        },
+        endDate: {
+            type: Date,
+            default: null,
+            required: false
+        },
         createdAt:{
             type:Date,
             default: Date.now()

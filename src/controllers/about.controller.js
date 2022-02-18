@@ -9,7 +9,7 @@ exports.AddAbout = async (req, res) =>{
             lastname: req.body.lastname,
             dateBirth: req.body.dateBirth,
             description: req.body.description,
-            home: req.body.home,
+            adress: req.body.adress,
             city: req.body.city,
             country: req.body.country,
         })
@@ -28,7 +28,7 @@ exports.getAllAbout = async (req, res) => {
             res.status(200).json(data)
         })
     }catch(err){
-       res.status(500).json("Erreur de modification")
+       res.status(500).json("Erreur de chargement de donnee")
     }
 }
 
@@ -37,7 +37,7 @@ exports.getOneAbout = async (req, res) =>{
         const about = await AboutModel.findById(req.params.id)
         res.status(200).json(about)
     }catch(err){
-        res.status(500).json("Erreur de modification")
+        res.status(500).json("Erreur de chargement de donnee")
     }
 }
 

@@ -18,90 +18,90 @@ db.mongoose.connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`
     useUnifiedTopology: true
 }).then(()=>{
     console.log("Connexion avec la base de donnee etablit");
-    initial();
+    // initial();
 }).catch(err=>{
     console.log("Erreur de connexion");
     process.exit();
 })
 
-function initial(){
-    Role.estimatedDocumentCount((err, count) => {
-        if(!err && count === 0){
-            new Role({
-                name: "user"
-            }).save(err => {
-                if(err){
-                    console.log("error", err)
-                }
-                console.log("User ajouter dans le role")
-            });
-            new Role({
-                name: "moderator"
-            }).save(err => {
-                if(err){
-                    console.log("Error", err)
-                }
-                console.log("moderator bien ajouter dans le role")
-            });
+// function initial(){
+//     Role.estimatedDocumentCount((err, count) => {
+//         if(!err && count === 0){
+//             new Role({
+//                 name: "user"
+//             }).save(err => {
+//                 if(err){
+//                     console.log("error", err)
+//                 }
+//                 console.log("User ajouter dans le role")
+//             });
+//             new Role({
+//                 name: "moderator"
+//             }).save(err => {
+//                 if(err){
+//                     console.log("Error", err)
+//                 }
+//                 console.log("moderator bien ajouter dans le role")
+//             });
 
-            new Role({
-                name: "admin"
-            }).save(err => {
-                if(err){
-                    console.log("error", err)
-                }
-                console.log("Admin ajouter dans le role")
-            });
-        }
-    })
-    Type.estimatedDocumentCount((err, count) => {
-        if(!err && count === 0){
-            new Type({
-                name: "Front-end"
-            }).save(err => {
-                if(err){
-                    console.log("error", err)
-                }
-                console.log("Front-end type ajouter dans le type")
-            });
-            new Type({
-                name: "Back-end"
-            }).save(err => {
-                if(err){
-                    console.log("Error", err)
-                }
-                console.log("Back-end type ajouter dans le type")
-            });
+//             new Role({
+//                 name: "admin"
+//             }).save(err => {
+//                 if(err){
+//                     console.log("error", err)
+//                 }
+//                 console.log("Admin ajouter dans le role")
+//             });
+//         }
+//     })
+//     Type.estimatedDocumentCount((err, count) => {
+//         if(!err && count === 0){
+//             new Type({
+//                 name: "Front-end"
+//             }).save(err => {
+//                 if(err){
+//                     console.log("error", err)
+//                 }
+//                 console.log("Front-end type ajouter dans le type")
+//             });
+//             new Type({
+//                 name: "Back-end"
+//             }).save(err => {
+//                 if(err){
+//                     console.log("Error", err)
+//                 }
+//                 console.log("Back-end type ajouter dans le type")
+//             });
 
-            new Type({
-                name: "Designer"
-            }).save(err => {
-                if(err){
-                    console.log("error", err)
-                }
-                console.log("Designer type ajouter dans le type")
-            });
+//             new Type({
+//                 name: "Designer"
+//             }).save(err => {
+//                 if(err){
+//                     console.log("error", err)
+//                 }
+//                 console.log("Designer type ajouter dans le type")
+//             });
 
-            new Type({
-                name: "Mobile"
-            }).save(err => {
-                if(err){
-                    console.log("error", err)
-                }
-                console.log("Mobile type ajouter dans le type")
-            });
+//             new Type({
+//                 name: "Mobile"
+//             }).save(err => {
+//                 if(err){
+//                     console.log("error", err)
+//                 }
+//                 console.log("Mobile type ajouter dans le type")
+//             });
 
-            new Type({
-                name: "Autres"
-            }).save(err => {
-                if(err){
-                    console.log("error", err)
-                }
-                console.log("Autre type ajouter dans le type")
-            });
-        }
-    })
-}
+//             new Type({
+//                 name: "Autres"
+//             }).save(err => {
+//                 if(err){
+//                     console.log("error", err)
+//                 }
+//                 console.log("Autre type ajouter dans le type")
+//             });
+//         }
+//     })
+// }
 
 
 
@@ -121,6 +121,10 @@ const abouteRoute = require("./src/routes/about.route")
 const skillRoute = require("./src/routes/skill.route")
 const typeRoute = require("./src/routes/type.route")
 const langueRoute = require("./src/routes/langue.route")
+const expRoute = require("./src/routes/experience.route")
+const formationRoute = require("./src/routes/formation.route")
+const roleRoute = require("./src/routes/role.route")
+const contactRoute = require("./src/routes/contact.route")
 
 app.use(function(req, res, next) {
     res.header(
@@ -140,6 +144,10 @@ app.use("/api/about", abouteRoute)
 app.use("/api/skill", skillRoute)
 app.use("/api/type", typeRoute)
 app.use("/api/langue", langueRoute)
+app.use("/api/experience", expRoute)
+app.use("/api/formation", formationRoute)
+app.use("/api/roles", roleRoute)
+app.use("/api/contact", contactRoute)
 
 
 app.get("/", (req, res)=>{

@@ -3,15 +3,22 @@ const mongoose = require("mongoose")
 const Experience = mongoose.model(
     "Experience",
     new mongoose.Schema({
-        title: String,
+        poste: String,
         societe: String,
-        post: String,
-        mission: {
-            title: String,
-            desc: String
+        descPost: String,
+        descMission: {
+            type: Array
         },
-        startDate:Date,
-        endDate: Date,
+        startDate:{
+            type: Date,
+            default: null,
+            required: false
+        },
+        endDate: {
+            type: Date,
+            default: null,
+            required: false
+        },
         createdAt:{
             type:Date,
             default: Date.now()

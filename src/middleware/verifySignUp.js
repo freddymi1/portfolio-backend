@@ -13,7 +13,7 @@ checkNameOrEmail = (req, res, next) => {
             return;
         }
         if(user){
-            res.send({status: 400, message: "Erreur, cette user est deja existe"});
+            res.send({status: 400, message: "Erreur, cette utilisateur est deja existe"});
             return;
         }
 
@@ -34,24 +34,24 @@ checkNameOrEmail = (req, res, next) => {
     })
 }
 
-checkRoleExiste = (req, res, next) => {
-    if(req.body.roles){
-        for(let i = 0;i < req.body.roles.length; i++){
-            if(!ROLES.includes(req.body.roles[i])){
-                res.send({
-                    status: 400,
-                    message: `Error! Le role ${req.body.roles[i]} existe deja`
-                })
-                return;
-            }
-        }
-    }
+// checkRoleExiste = (req, res, next) => {
+//     if(req.body.roles){
+//         for(let i = 0;i < req.body.roles.length; i++){
+//             if(!ROLES.includes(req.body.roles[i])){
+//                 res.send({
+//                     status: 400,
+//                     message: `Error! Le role ${req.body.roles[i]} existe deja`
+//                 })
+//                 return;
+//             }
+//         }
+//     }
     
-    next();
-};
+//     next();
+// };
 
 const verifySignUp = {
     checkNameOrEmail,
-    checkRoleExiste
+    // checkRoleExiste
 }
 module.exports = verifySignUp;
